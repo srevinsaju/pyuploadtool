@@ -35,7 +35,6 @@ class Changelog:
         :type commit_link_prefix: str
         """
 
-        # remove the trailing hash
         self.commit_link_prefix = commit_link_prefix.rstrip("/")
         self.title = title
 
