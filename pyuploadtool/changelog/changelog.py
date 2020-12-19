@@ -50,6 +50,7 @@ class Changelog:
         :return: The classification of the commit == CONVENTIONAL_COMMIT_SPEC.keys()
         :rtype: str
         """
+
         message = commit.pop("message")
         for spec in CONVENTIONAL_COMMIT_SPEC:
             if message.startswith(f"{spec}:"):
@@ -78,6 +79,7 @@ class Changelog:
         :return:
         :rtype:
         """
+
         return self._data
 
     def render_to_markdown(self):
@@ -86,6 +88,7 @@ class Changelog:
         :return:
         :rtype:
         """
+
         markdown_changelog = list()
 
         # add the title if it is provided
