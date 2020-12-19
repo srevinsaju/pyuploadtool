@@ -6,6 +6,7 @@ from . import ReleaseHostingProviderError
 from .base import ReleasesHostingProviderBase
 from .. import ReleaseMetadata, BuildType
 from ..exceptions import PyUploadtoolError
+from ..changelog.github import GitHubChangelogGenerator
 from ..logging import make_logger
 
 
@@ -76,6 +77,13 @@ class GitHubReleases(ReleasesHostingProviderBase):
             release = None
 
         message = f"Build log: {metadata.build_log_url}"
+
+        if os.getenv("GENERATE_CHANGELOG", "").lower() == "true":
+            github_chglog = GitHubChangelogGenerator(
+                metadata=metadata,
+                github_token=os.environ["GITHUB_TOKEN"]
+            )
+            metadata.release_description = github_chglog.get_changelog()
 
         if metadata.release_description is not None:
             message = f"{metadata.release_description}\n\n{message}"
