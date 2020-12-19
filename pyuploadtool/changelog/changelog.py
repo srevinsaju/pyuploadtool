@@ -73,6 +73,14 @@ class Changelog:
         })
         return "others"
 
+    def get_changelog(self):
+        """
+        Returns the stored changelog metadata
+        :return:
+        :rtype:
+        """
+        return self._data
+
     def render_to_markdown(self):
         """
         Get Markdown Changelog
