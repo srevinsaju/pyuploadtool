@@ -79,11 +79,15 @@ class GitHubReleases(ReleasesHostingProviderBase):
         message = f"Build log: {metadata.build_log_url}"
 
         if os.getenv("GENERATE_CHANGELOG", "").lower() == "true":
-            github_chglog = GitHubChangelogGenerator(
+            github_changelog = GitHubChangelogGenerator(
                 metadata=metadata,
                 github_token=os.environ["GITHUB_TOKEN"]
             )
-            metadata.release_description = github_chglog.get_changelog()
+            markdown_changelog = github_changelog.get_changelog()
+            if metadata.release_description is None:
+                metadata.release_description = markdown_changelog
+            else:
+                metadata.release_description = f"{metadata.release_description}\n\n{markdown_changelog}"
 
         if metadata.release_description is not None:
             message = f"{metadata.release_description}\n\n{message}"
