@@ -1,6 +1,6 @@
 
 import os
-
+import re
 
 # order them by priority
 # https://cheatography.com/albelop/cheat-sheets/conventional-commits/
@@ -59,9 +59,9 @@ class Changelog:
                     **commit
                 })
                 return spec
-            elif message.startswith(f"{spec} "):
+            elif re.search(f"{spec}.*(.*):.*", message):
                 self._data[spec].append({
-                    "message": message[len(f"{spec}") + 1:].strip(),
+                    "message": message[message.find(":") + 1:].strip(),
                     **commit
                 })
                 return spec
