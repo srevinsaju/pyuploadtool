@@ -73,7 +73,7 @@ class Changelog:
         })
         return "others"
 
-    def get_changelog(self):
+    def render_to_markdown(self):
         """
         Get Markdown Changelog
         :return:
