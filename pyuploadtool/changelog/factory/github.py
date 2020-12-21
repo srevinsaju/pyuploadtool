@@ -4,7 +4,7 @@ from github.GitRelease import GitRelease
 from .. import Changelog
 from .base import ChangelogFactory
 from ..commit import ChangelogCommit
-from ... import ReleaseMetadata
+from ...metadata import ReleaseMetadata
 from ...logging import make_logger
 
 
