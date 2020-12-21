@@ -22,14 +22,11 @@ class MarkdownChangelogParser(ChangelogParser):
                 markdown_changelog.append(f"## {self.changelog.structure.get(spec)}")
 
             for commit in self.changelog[spec]:
-                author_name = commit.get("author")
-                commit_sha = commit.get("sha")
-                message = commit.get("message")
                 if self.commit_link_prefix:
-                    author = f"([{author_name}]({self.commit_link_prefix}/{commit_sha}))"
+                    author = f"([{commit.author.name}]({self.commit_link_prefix}/{commit.sha}))"
                 else:
-                    author = f"({author_name})"
+                    author = f"({commit.author.name})"
 
-                markdown_changelog.append(f"* {message} {author}")
+                markdown_changelog.append(f"* {commit.message} {author}")
 
         return "\n".join(markdown_changelog)
