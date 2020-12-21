@@ -2,7 +2,6 @@ from github import Github
 from github.GitRelease import GitRelease
 
 from .. import Changelog
-from ... import ReleaseMetadata
 from .base import ChangelogFactory
 from ..commit import ChangelogCommit
 from ...metadata import ReleaseMetadata
