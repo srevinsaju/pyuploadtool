@@ -5,8 +5,8 @@ from github import Github, UnknownObjectException
 from . import ReleaseHostingProviderError
 from .base import ReleasesHostingProviderBase
 from .. import ReleaseMetadata, BuildType
-from ..exceptions import PyUploadtoolError
-from ..changelog.github import GitHubChangelogGenerator
+from ..changelog.parsers import MarkdownChangelogParser
+from ..changelog.factory.github import GitHubChangelogFactory
 from ..logging import make_logger
 
 
@@ -78,12 +78,15 @@ class GitHubReleases(ReleasesHostingProviderBase):
 
         message = f"Build log: {metadata.build_log_url}"
 
-        if os.getenv("GENERATE_CHANGELOG", "").lower() == "true":
-            github_changelog = GitHubChangelogGenerator(
-                metadata=metadata,
-                github_token=os.environ["GITHUB_TOKEN"]
+        if os.getenv("CHANGELOG_GENERATE", "").lower() == "true":
+
+            github_changelog = GitHubChangelogFactory(
+                github_client=self.github_client,
+                metadata=metadata
             )
-            markdown_changelog = github_changelog.get_changelog()
+            metadata.changelog = github_changelog.get_changelog()
+            markdown_changelog = MarkdownChangelogParser(metadata.changelog).render_to_markdown()
+
             if metadata.release_description is None:
                 metadata.release_description = markdown_changelog
             else:

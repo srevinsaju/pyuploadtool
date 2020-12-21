@@ -1,5 +1,7 @@
 from .changelog import Changelog
-from .github import GitHubChangelogGenerator
+from .types import ChangelogType
+from .changelog_spec import ConventionalCommitChangelog
+from .factory import GitHubChangelogFactory
 
 
-__all__ = (Changelog, GitHubChangelogGenerator)
+__all__ = (Changelog, ConventionalCommitChangelog, GitHubChangelogFactory, ChangelogType)
