@@ -80,10 +80,7 @@ class GitHubReleases(ReleasesHostingProviderBase):
 
         if os.getenv("CHANGELOG_GENERATE", "").lower() == "true":
 
-            github_changelog = GitHubChangelogFactory(
-                github_client=self.github_client,
-                metadata=metadata
-            )
+            github_changelog = GitHubChangelogFactory(github_client=self.github_client, metadata=metadata)
             metadata.changelog = github_changelog.get_changelog()
             markdown_changelog = MarkdownChangelogParser(metadata.changelog).render_to_markdown()
 

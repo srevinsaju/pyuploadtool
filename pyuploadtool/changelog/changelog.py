@@ -24,9 +24,7 @@ class Changelog:
         :return:
         :rtype:
         """
-        return {
-            "others":   "Commits"
-        }
+        return {"others": "Commits"}
 
     def push(self, commit: ChangelogCommit):
         """

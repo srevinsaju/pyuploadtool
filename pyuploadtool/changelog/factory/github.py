@@ -34,12 +34,10 @@ class GitHubChangelogFactory(ChangelogFactory):
         _latest_release = None
         _rolling_release = None
         for release in releases:
-            if not release.tag_name.startswith("v") or \
-                    not release.tag_name[0].isdigit():
+            if not release.tag_name.startswith("v") or not release.tag_name[0].isdigit():
                 # the release does not follow semver specs
 
-                if _rolling_release is None or (
-                        _rolling_release and release.created_at > _rolling_release.created_at):
+                if _rolling_release is None or (_rolling_release and release.created_at > _rolling_release.created_at):
                     # probably, we are looking at a rolling release
                     # like 'continuous', 'beta', etc..
                     _rolling_release = release

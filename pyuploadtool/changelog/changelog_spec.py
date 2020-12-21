@@ -1,4 +1,3 @@
-
 import re
 
 from .changelog import Changelog
@@ -18,17 +17,17 @@ class ConventionalCommitChangelog(Changelog):
         :rtype:
         """
         return {
-            "feat":     "Features",
-            "fix":      "Bug Fixes",
-            "perf":     "Performance Improvements",
-            "docs":     "Documentation",
-            "ci":       "Continuous Integration",
+            "feat": "Features",
+            "fix": "Bug Fixes",
+            "perf": "Performance Improvements",
+            "docs": "Documentation",
+            "ci": "Continuous Integration",
             "refactor": "Refactoring",
-            "test":     "Tests",
-            "build":    "Builds",
-            "revert":   "Reverts",
-            "chore":    "Chores",
-            "others":   "Commits"
+            "test": "Tests",
+            "build": "Builds",
+            "revert": "Reverts",
+            "chore": "Chores",
+            "others": "Commits",
         }
 
     def push(self, commit: ChangelogCommit) -> str:
@@ -43,11 +42,11 @@ class ConventionalCommitChangelog(Changelog):
 
         for spec in self.structure:
             if commit.message.startswith(f"{spec}:"):
-                commit.message = commit.message[len(f"{spec}:") + 1:].strip()
+                commit.message = commit.message[len(f"{spec}:") + 1 :].strip()
                 self._data[spec].append(commit)
                 return spec
             elif re.search(f"{spec}.*(.*):.*", commit.message):
-                commit.message = commit.message[commit.message.find(":") + 1:].strip()
+                commit.message = commit.message[commit.message.find(":") + 1 :].strip()
                 self._data[spec].append(commit)
                 return spec
 

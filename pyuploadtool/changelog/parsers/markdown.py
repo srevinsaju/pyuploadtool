@@ -32,4 +32,4 @@ class MarkdownChangelogParser(Parser):
 
                 markdown_changelog.append(f"* {message} {author}")
 
-        return '\n'.join(markdown_changelog)
+        return "\n".join(markdown_changelog)

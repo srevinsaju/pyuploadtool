@@ -27,7 +27,7 @@ class ReleaseMetadata:
         pipeline_name: str = None,
         pipeline_run_number: str = None,
         build_type: BuildType = None,
-        changelog: Changelog = None
+        changelog: Changelog = None,
     ):
         # name of the current tag
         self.tag = tag

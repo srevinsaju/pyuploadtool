@@ -1,8 +1,8 @@
 class Author:
     def __init__(
-            self,
-            name: str = None,
-            email: str = None,
+        self,
+        name: str = None,
+        email: str = None,
     ):
         self._name = name
         self._email = email
@@ -14,4 +14,3 @@ class Author:
     @property
     def email(self):
         return self._email
-

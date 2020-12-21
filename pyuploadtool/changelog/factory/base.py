@@ -3,10 +3,7 @@ from typing import Type
 from .. import ChangelogType, Changelog, ConventionalCommitChangelog
 
 
-SUPPORTED_CHANGELOG_TYPES = {
-    ChangelogType.STANDARD: Changelog,
-    ChangelogType.CONVENTIONAL: ConventionalCommitChangelog
-}
+SUPPORTED_CHANGELOG_TYPES = {ChangelogType.STANDARD: Changelog, ChangelogType.CONVENTIONAL: ConventionalCommitChangelog}
 
 
 class ChangelogTypeNotImplemented(NotImplementedError):
@@ -14,10 +11,7 @@ class ChangelogTypeNotImplemented(NotImplementedError):
 
 
 class ChangelogFactory:
-    def __init__(
-        self,
-        changelog_type: ChangelogType = None
-    ):
+    def __init__(self, changelog_type: ChangelogType = None):
         self.changelog_type = changelog_type
         self.changelog_generator = self.get_changelog_generator()
 

@@ -3,10 +3,10 @@ from .. import Changelog
 
 class ChangelogParser:
     def __init__(
-            self,
-            changelog: Changelog,
-            title=None,
-            commit_link_prefix=None,
+        self,
+        changelog: Changelog,
+        title=None,
+        commit_link_prefix=None,
     ):
         """
         Generates a changelog by arranging the commits according
