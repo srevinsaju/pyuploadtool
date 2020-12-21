@@ -1,7 +1,7 @@
-from .parser import Parser
+from .parser import ChangelogParser
 
 
-class MarkdownChangelogParser(Parser):
+class MarkdownChangelogParser(ChangelogParser):
     def render_to_markdown(self):
         """
         Get Markdown MarkdownChangelogParser
