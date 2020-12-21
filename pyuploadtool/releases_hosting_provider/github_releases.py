@@ -83,8 +83,7 @@ class GitHubReleases(ReleasesHostingProviderBase):
             github_changelog = GitHubChangelogFactory(github_client=self.github_client, metadata=metadata)
             metadata.changelog = github_changelog.get_changelog()
             markdown_changelog = MarkdownChangelogParser(
-                metadata.changelog,
-                commit_link_prefix=f"https://github.com/{metadata.repository_slug}/commit/"
+                metadata.changelog, commit_link_prefix=f"https://github.com/{metadata.repository_slug}/commit/"
             ).render_to_markdown()
 
             if metadata.release_description is None:
