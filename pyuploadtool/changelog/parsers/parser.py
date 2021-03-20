@@ -5,8 +5,8 @@ class ChangelogParser:
     def __init__(
         self,
         changelog: Changelog,
-        title=None,
-        commit_link_prefix=None,
+        title: str = None,
+        commit_link_prefix: str = None,
     ):
         """
         Generates a changelog by arranging the commits according
