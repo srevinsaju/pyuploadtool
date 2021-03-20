@@ -19,8 +19,8 @@ class Changelog:
     @staticmethod
     def structure() -> dict:
         """
-        Minimal structure of a changelog. All commits
-        would be classified as others
+        Returns a dictionary with a minimal structure of a changelog.
+        All commits would be classified as others by default.
         :return:
         :rtype:
         """
@@ -36,11 +36,5 @@ class Changelog:
         return "others"
 
     @property
-    def changelog(self):
-        """
-        Returns the stored changelog metadata
-        :return:
-        :rtype:
-        """
-
+    def changelog(self) -> dict:
         return self._data
