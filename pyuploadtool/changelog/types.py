@@ -11,12 +11,12 @@ class ChangelogType(Enum):
 
     @staticmethod
     def from_environment():
-        _type = os.getenv("CHANGELOG_TYPE")
-        if _type is None:
+        type = os.getenv("CHANGELOG_TYPE")
+        if type is None:
             return ChangelogType.STANDARD
 
         for i in ChangelogType:
-            if _type.isdigit() and int(_type) == i.value or _type == i.name:
+            if type.isdigit() and int(type) == i.value or type == i.name:
                 return i
 
         # fall back to the default

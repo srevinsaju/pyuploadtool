@@ -20,13 +20,13 @@ class ChangelogFactory:
         Get the corresponding changelog generator from the environment
         if it is not supplied.
         :return:
-        :rtype:
+        :rtype: ChangelogType
         """
         if self.changelog_type is None:
             self.changelog_type = ChangelogType.from_environment()
 
-        _generator = SUPPORTED_CHANGELOG_TYPES.get(self.changelog_type)
-        if _generator is None:
+        generator = SUPPORTED_CHANGELOG_TYPES.get(self.changelog_type)
+        if generator is None:
             raise ChangelogTypeNotImplemented(f"{self.changelog_type} is not a supported ChangeLogType")
 
-        return _generator
+        return generator

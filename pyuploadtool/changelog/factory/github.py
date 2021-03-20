@@ -31,33 +31,33 @@ class GitHubChangelogFactory(ChangelogFactory):
         """
 
         releases = self.repository.get_releases()
-        _latest_release = None
-        _rolling_release = None
+        latest_release = None
+        rolling_release = None
         for release in releases:
             if not release.tag_name.startswith("v") or not release.tag_name[0].isdigit():
                 # the release does not follow semver specs
 
-                if _rolling_release is None or (_rolling_release and release.created_at > _rolling_release.created_at):
+                if rolling_release is None or (rolling_release and release.created_at > rolling_release.created_at):
                     # probably, we are looking at a rolling release
                     # like 'continuous', 'beta', etc..
-                    _rolling_release = release
+                    rolling_release = release
 
-            elif _latest_release is None:
+            elif latest_release is None:
                 # we still dont have a latest release,
                 # so we need to set whatever release we currently are at
                 # as the latest release
-                _latest_release = release
+                latest_release = release
 
-            elif release.created_at > _latest_release.created_at:
+            elif release.created_at > latest_release.created_at:
                 # we found a release for which, the current release is newer
                 # than the stored one
-                _latest_release = release
+                latest_release = release
 
         # we found a release which does not follow
         # semver specs, and it is a probably a rolling release
         # just provide that as the latest release
-        # so we need to return that, if we didnt find a suitable _latest_release
-        return _latest_release or _rolling_release
+        # so we need to return that, if we didnt find a suitable latest_release
+        return latest_release or rolling_release
 
     def get_commits_since(self, tag):
         """
