@@ -78,19 +78,17 @@ class GitHubReleases(ReleasesHostingProviderBase):
 
         message = f"Build log: {metadata.build_log_url}"
 
-        if os.getenv("CHANGELOG_GENERATE", "").lower() == "true":
+        should_generate_changelog = os.getenv("CHANGELOG_GENERATE", "").lower() == "true"
+
+        if should_generate_changelog and metadata.release_description is None:
             github_changelog = GitHubChangelogFactory(github_client=self.github_client, metadata=metadata)
-            metadata.changelog = github_changelog.get_changelog()
+            changelog = github_changelog.get_changelog()
             markdown_changelog = MarkdownChangelogParser(
-                metadata.changelog, commit_link_prefix=f"https://github.com/{metadata.repository_slug}/commit/"
+                changelog, commit_link_prefix=f"https://github.com/{metadata.repository_slug}/commit/"
             ).render_to_markdown()
+            message = f"{markdown_changelog}\n\n{message}"
 
-            if metadata.release_description is None:
-                metadata.release_description = markdown_changelog
-            else:
-                metadata.release_description = f"{metadata.release_description}\n\n{markdown_changelog}"
-
-        if metadata.release_description is not None:
+        elif metadata.release_description is not None:
             message = f"{metadata.release_description}\n\n{message}"
 
         # for some annoying reason, you have to specify all the metadata both when drafting _and_ creating the release
