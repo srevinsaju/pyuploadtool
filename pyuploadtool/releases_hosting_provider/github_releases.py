@@ -79,7 +79,6 @@ class GitHubReleases(ReleasesHostingProviderBase):
         message = f"Build log: {metadata.build_log_url}"
 
         if os.getenv("CHANGELOG_GENERATE", "").lower() == "true":
-
             github_changelog = GitHubChangelogFactory(github_client=self.github_client, metadata=metadata)
             metadata.changelog = github_changelog.get_changelog()
             markdown_changelog = MarkdownChangelogParser(
