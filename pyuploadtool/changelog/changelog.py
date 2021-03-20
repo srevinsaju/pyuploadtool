@@ -4,7 +4,7 @@ from .commit import ChangelogCommit
 class Changelog:
     def __init__(self):
         self._data = dict()
-        for spec in self.structure:
+        for spec in self.structure():
             self._data[spec] = list()
 
     def __repr__(self):
@@ -16,8 +16,8 @@ class Changelog:
     def __getitem__(self, item):
         return self._data[item]
 
-    @property
-    def structure(self):
+    @staticmethod
+    def structure() -> dict:
         """
         Minimal structure of a changelog. All commits
         would be classified as others

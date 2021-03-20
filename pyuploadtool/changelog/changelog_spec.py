@@ -5,8 +5,8 @@ from .commit import ChangelogCommit
 
 
 class ConventionalCommitChangelog(Changelog):
-    @property
-    def structure(self) -> dict:
+    @staticmethod
+    def structure() -> dict:
         """
         Returns a structure of the Conventional Commit Spec
         according to https://cheatography.com/albelop/cheat-sheets/conventional-commits/
@@ -40,7 +40,7 @@ class ConventionalCommitChangelog(Changelog):
         :rtype: str
         """
 
-        for spec in self.structure:
+        for spec in self.structure():
             if commit.message.startswith(f"{spec}:"):
                 commit.message = commit.message[len(f"{spec}:") + 1 :].strip()
                 self._data[spec].append(commit)
