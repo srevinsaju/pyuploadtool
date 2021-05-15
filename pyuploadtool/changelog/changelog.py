@@ -21,16 +21,15 @@ class Changelog:
         """
         Returns a dictionary with a minimal structure of a changelog.
         All commits would be classified as others by default.
-        :return:
-        :rtype:
+        :return: A dictionary with keys and their descriptive
+                 names which would be used for creating headings
         """
         return {"others": "Commits"}
 
-    def push(self, commit: ChangelogEntry):
+    def push(self, commit: ChangelogEntry) -> str:
         """
         Adds a commit to the changelog
         :return: The classification of the commit = other
-        :rtype: str
         """
         self._data["others"].append(commit)
         return "others"
