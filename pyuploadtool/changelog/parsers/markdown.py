@@ -2,11 +2,10 @@ from .parser import ChangelogParser
 
 
 class MarkdownChangelogParser(ChangelogParser):
-    def render_to_markdown(self):
+    def render_to_markdown(self) -> str:
         """
-        Get Markdown MarkdownChangelogParser
-        :return:
-        :rtype:
+        Parses the changelog to Markdown format
+        :return: a string containing parsed markdown information
         """
         markdown_changelog = list()
 
