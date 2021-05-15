@@ -72,13 +72,15 @@ You can upload to any WebDAV server which supports `PUT` operations. The followi
 
 
 ## Changelog Generation
-`pyuploadtool` support Changelog generation, which is optional, and can be enabled with the `$CHANGELOG_GENERATE` environment variable.
+`pyuploadtool` support Changelog generation, which is optional, and can be enabled with the `CHANGELOG_TYPE` environment variable.
 ```bash
-CHANGELOG_GENERATE=true ./pyuploadtool*.AppImage
+CHANGELOG_TYPE=standard ./pyuploadtool*.AppImage
 ```
-### Changelog Types
-`pyuploadtool` currently supports two types of Changelogs.
-* `CHANGELOG_TYPE=STANDARD` or `CHANGELOG_TYPE=0`, Standard Changelog, (Default)
-* `CHANGELOG_TYPE=CONVENTIONAL` or `CHANGELOG_TYPE=1`, Conventional changelog, follows the [Conventional Commit Spec](https://www.conventionalcommits.org/) which classifies your commits as Features, Bug Fixes, etc, provided your commits follow the spec.
 
-By default, `CHANGELOG_TYPE` is `STANDARD` unless explictly specified.
+### Changelog Types
+`CHANGELOG_TYPE` can have any of the following values:
+* `CHANGELOG_TYPE=none`, to disable generating Changelog (default)
+* `CHANGELOG_TYPE=standard`, Standard Changelog
+* `CHANGELOG_TYPE=conventional`, Conventional changelog, follows the [Conventional Commit Spec](https://www.conventionalcommits.org/) which classifies your commits as Features, Bug Fixes, etc, provided your commits follow the spec.
+
+By default, `CHANGELOG_TYPE` is `none` unless explicitly specified.

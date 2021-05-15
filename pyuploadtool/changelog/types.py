@@ -3,6 +3,9 @@ from enum import Enum
 
 
 class ChangelogType(Enum):
+    # none
+    NONE = -1
+
     # default
     STANDARD = 0
 
@@ -20,4 +23,4 @@ class ChangelogType(Enum):
                 return i
 
         # fall back to the default
-        return ChangelogType.STANDARD
+        return ChangelogType.NONE
