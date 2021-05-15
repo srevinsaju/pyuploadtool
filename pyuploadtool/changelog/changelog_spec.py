@@ -1,7 +1,7 @@
 import re
 
 from .changelog import Changelog
-from .commit import ChangelogCommit
+from .commit import ChangelogEntry
 
 
 class ConventionalCommitChangelog(Changelog):
@@ -30,12 +30,12 @@ class ConventionalCommitChangelog(Changelog):
             "others": "Commits",
         }
 
-    def push(self, commit: ChangelogCommit) -> str:
+    def push(self, commit: ChangelogEntry) -> str:
         """
         Adds a commit to the changelog and aligns each commit
         based on their category. See self.structure
         :param commit
-        :type commit: ChangelogCommit
+        :type commit: ChangelogEntry
         :return: The classification of the commit == self.structure.keys()
         :rtype: str
         """

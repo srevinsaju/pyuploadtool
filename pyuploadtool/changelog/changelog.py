@@ -1,4 +1,4 @@
-from .commit import ChangelogCommit
+from .commit import ChangelogEntry
 
 
 class Changelog:
@@ -26,7 +26,7 @@ class Changelog:
         """
         return {"others": "Commits"}
 
-    def push(self, commit: ChangelogCommit):
+    def push(self, commit: ChangelogEntry):
         """
         Adds a commit to the changelog
         :return: The classification of the commit = other

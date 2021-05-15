@@ -3,7 +3,7 @@ from github.GitRelease import GitRelease
 
 from .. import Changelog
 from .base import ChangelogFactory
-from ..commit import ChangelogCommit
+from ..commit import ChangelogEntry
 from ...metadata import ReleaseMetadata
 from ...logging import make_logger
 
@@ -91,6 +91,6 @@ class GitHubChangelogFactory(ChangelogFactory):
         changelog = self.changelog_generator()
 
         for commit in commits:
-            changelog.push(ChangelogCommit.from_github_commit(commit))
+            changelog.push(ChangelogEntry.from_github_commit(commit))
 
         return changelog
