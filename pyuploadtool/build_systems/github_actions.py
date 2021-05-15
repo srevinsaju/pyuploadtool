@@ -1,8 +1,6 @@
 import os
 import re
 
-import github
-
 from . import BuildSystemBase, BuildSystemError
 from .. import BuildType
 from ..logging import make_logger
@@ -26,12 +24,12 @@ class GitHubActions(BuildSystemBase):
     def from_environment(cls):
         try:
             repository = os.environ["GITHUB_REPOSITORY"]
-            run_id = os.environ["GITHUB_RUN_ID"]
+            run_id = int(os.environ["GITHUB_RUN_ID"])
             event_name = os.environ["GITHUB_EVENT_NAME"]
             ref = os.environ["GITHUB_REF"]
             sha = os.environ["GITHUB_SHA"]
             workflow = os.environ["GITHUB_WORKFLOW"]
-            run_number = os.environ["GITHUB_RUN_NUMBER"]
+            run_number = int(os.environ["GITHUB_RUN_NUMBER"])
 
         except KeyError as e:
             raise BuildSystemError(f"Could not find environment variable ${e.args[0]}")
@@ -64,3 +62,7 @@ class GitHubActions(BuildSystemBase):
             metadata.build_type = BuildType.PULL_REQUEST
         if event_name == "push":
             metadata.build_type = BuildType.PUSH
+        if event_name == "schedule":
+            metadata.build_type = BuildType.SCHEDULED
+        if event_name in ["workflow_dispatch", "repository_dispatch"]:
+            metadata.build_type = BuildType.MANUAL

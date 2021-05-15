@@ -5,6 +5,22 @@ A build-system-agnostic tool for creating releases and uploading artifacts on va
 *Inspired by [uploadtool](https://github.com/probonopd/uploadtool), but much better in so many ways...*
 
 
+## Projects using pyuploadtool
+
+- [appimagecraft](https://github.com/TheAssassin/appimagecraft/)
+- [linuxdeploy](https://github.com/linuxdeploy/linuxdeploy)
+- [linuxdeploy-plugin-appimage](https://github.com/linuxdeploy/linuxdeploy-plugin-appimage)
+- [linuxdeploy-plugin-qt](https://github.com/linuxdeploy/linuxdeploy-plugin-qt)
+- [Blue Nebula](https://blue-nebula.org/)
+- [Pext](https://github.com/Pext/Pext)
+- [zsync2](https://github.com/AppImage/zsync2/)
+- [AppImageKit](https://github.com/AppImage/AppImageKit/)
+- [AppImageUpdate](https://github.com/AppImage/AppImageUpdate/)
+- [SpinED](https://github.com/twesterhout/spin-ed)
+
+... and a lot more! Some projects can be found [on GitHub](https://github.com/search?q=pyuploadtool&type=code).
+
+
 ## Usage
 
 Using this tool is fairly straightforward. Ideally, in one of the supported build environments, all you have to do is to run it! The tool figures out its configuration from the environment variables (which either are provided by the build system, or set by the user).
@@ -24,7 +40,7 @@ The tool can easily upload files to *GitHub releases* if you make the `GITHUB_TO
 
 An example pipeline step look like this:
 
-```
+```yaml
       - name: Create release and upload artifacts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -38,7 +54,7 @@ If you want to upload to WebDAV, too, you could use the following step:
 
 An example pipeline step look like this:
 
-```
+```yaml
       - name: Create release and upload artifacts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
