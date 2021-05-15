@@ -16,7 +16,7 @@ class ChangelogType(Enum):
             return ChangelogType.STANDARD
 
         for i in ChangelogType:
-            if type.isdigit() and int(type) == i.value or type == i.name:
+            if type.isdigit() and int(type) == i.value or type.lower() == i.name.lower():
                 return i
 
         # fall back to the default
